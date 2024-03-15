@@ -1,3 +1,13 @@
+/*
+Para compilar un archivo .c escribir en la terminal:
+$> gcc -Wall -Wextra -std=c99 asoc.c -o picachuYoTeElijo
+Para ejecutar escribir:
+$> ./miprograma
+Para compilar para gdb se debe agregar el flag -g al momento de compilar .c escribir en la
+terminal:
+$> gcc -Wall -Wextra -std=c99 -g miarchivo.c -o miprograma
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -13,6 +23,30 @@ struct bound_data {
 
 struct bound_data check_bound(int value, int arr[], unsigned int length) {
     struct bound_data res;
+    res.is_upperbound = false;
+    res.is_lowerbound = false;
+    res.exists = false;
+    res.where = false;
+    for (unsigned int  i = 0; i < length; i++)
+    {
+        if (value == arr[i])
+        {
+            res.exists = true;
+            res.where = i;
+        }
+
+        if (value > arr[i] || value == arr[i])
+        {
+            res.is_upperbound = true;
+        }
+
+        else if (value < arr[i] || value == arr[i])
+        {
+            res.is_lowerbound = true;
+        }        
+    }
+    
+    
     //
     // TODO: COMPLETAR
     //
