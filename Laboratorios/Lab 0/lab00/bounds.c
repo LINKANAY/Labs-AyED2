@@ -1,4 +1,5 @@
 /*
+Lab 00 - Ejercicio 1
 Para compilar un archivo .c escribir en la terminal:
 $> gcc -Wall -Wextra -std=c99 asoc.c -o picachuYoTeElijo
 Para ejecutar escribir:
@@ -27,24 +28,34 @@ struct bound_data check_bound(int value, int arr[], unsigned int length) {
     res.is_lowerbound = false;
     res.exists = false;
     res.where = false;
+    unsigned int contadorU = 0;
+    unsigned int contadorL = 0;
     for (unsigned int  i = 0; i < length; i++)
     {
         if (value == arr[i])
         {
             res.exists = true;
-            res.where = i;
-        }
-
+            res.where = i;        
+        }              
         if (value > arr[i] || value == arr[i])
         {
-            res.is_upperbound = true;
+            contadorU++;
+            
         }
-
-        else if (value < arr[i] || value == arr[i])
+        if (value < arr[i] || value == arr[i])
         {
-            res.is_lowerbound = true;
-        }        
+            contadorL++;
+        }
     }
+    if (contadorU == length)
+    {
+        res.is_upperbound = true;
+    }
+    if (contadorL == length)
+    {
+        res.is_lowerbound = true;
+    }
+    
     
     
     //
@@ -53,20 +64,43 @@ struct bound_data check_bound(int value, int arr[], unsigned int length) {
     return res;
 }
 
+void pedir_arreglo(int n_max, int a[]);
+int pedirEntero();
+
 int main(void) {
-    int a[ARRAY_SIZE] = {0, -1, 9, 4};
-    int value=9;
-    //
-    // TODO: COMPLETAR - Pedir entrada al usuario
-    //
-    struct bound_data result = check_bound(value, a, ARRAY_SIZE);
+    int lista[ARRAY_SIZE];
+    pedir_arreglo(ARRAY_SIZE, lista);
+    int numero = pedirEntero();
+
+    struct bound_data result = check_bound(numero, lista, ARRAY_SIZE);
 
     // TODO: REEMPLAZAR LO SIGUIENTE LUEGO POR LA SALIDA QUE PIDE EL ENUNCIADO
-    printf("%d", result.is_upperbound); // Imprime 1
-    printf("%d", result.is_lowerbound); // Imprime 0
-    printf("%u", result.exists);        // Imprime 1
-    printf("%u", result.where);         // Imprime 2
+    printf("cota superior: %d\n", result.is_upperbound); // Imprime 1
+    printf("cota inferior: %d\n", result.is_lowerbound); // Imprime 0
+    if (result.is_lowerbound == false && result.is_upperbound == false)
+    {
+        if (result.exists)
+        {
+            printf("La posicion de %d es %d\n", numero, result.where); 
+        }    
+    }
 
     return EXIT_SUCCESS;
 }
 
+void pedir_arreglo(int n_max, int a[]){
+    printf("Ingrese los %d elementos de la lista:\n", n_max);
+
+    for (int i = 0; i < n_max; i++)
+    {
+        printf("Ingrese el elemento %d: ", i+1);
+        scanf("%d", &a[i]);
+    }   
+}
+
+int pedirEntero(){
+  int x;  
+  printf("Ingrese un numero para el analisis en la lista\n");
+  scanf("%d", &x);
+  return x;
+}

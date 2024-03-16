@@ -1,5 +1,5 @@
 /*
-Lab 00 - Ejercicio 2
+Lab 00 - Ejercicio 3-a
 Para compilar un archivo .c escribir en la terminal:
 $> gcc -Wall -Wextra -std=c99 asoc.c -o picachuYoTeElijo
 Para ejecutar escribir:
@@ -15,7 +15,7 @@ $> gcc -Wall -Wextra -std=c99 -g miarchivo.c -o miprograma
 #include <assert.h>  /* assert() */
 
 
-#define CELL_MAX (3 * 3 - 1)
+#define CELL_MAX (4 * 4 - 1)
 
 void print_sep(int length) {
     printf("\t ");
@@ -24,36 +24,36 @@ void print_sep(int length) {
 
 }
 
-void print_board(char board[3][3])
+void print_board(char board[4][4])
 {
     int cell = 0;
 
-    print_sep(3);
-    for (int row = 0; row < 3; ++row) {
-        for (int column = 0; column < 3; ++column) {
+    print_sep(4);
+    for (int row = 0; row < 4; ++row) {
+        for (int column = 0; column < 4; ++column) {
             printf("\t | %d: %c ", cell, board[row][column]);
             ++cell;
         }
         printf("\t | \n");
-        print_sep(3);
+        print_sep(4);
     }
 }
 
-char get_winner(char board[3][3])
+char get_winner(char board[4][4])
 {
     char winner = '-';
-    if (board[0][0] == board[1][1] && board[0][0] == board[2][2] || board[2][0] == board[1][1] && board[2][0] == board[0][2] )
+    if ((board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == board[3][3] )|| (board[3][0] == board[2][1] && board[3][0] == board[1][2] && board[3][0] == board[0][3]) )
         {
             winner = board[1][1]; 
         }
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
     {
-        if (board[i][0] == board[i][1] == board[i][2] )
+        if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] == board[i][3] )
         {
             winner = board[i][0];
             break;
         }
-        else if (board[0][i] == board[1][i] == board[2][i])
+        else if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == board[3][i])
         {
             winner = board[0][i];
             break;
@@ -62,34 +62,32 @@ char get_winner(char board[3][3])
     return winner;
 }
 
-bool has_free_cell(char board[3][3])
+bool has_free_cell(char board[4][4])
 {
     bool free_cell=false;
     char lugar = '-';
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
     {
-        for (int j = 0; i < 3; i++)
+        for (int j = 0; j < 4; j++)
         {
             if (lugar == board[i][j])
             {
                 free_cell = true;
             }
         }
-        
     }
     return free_cell;
 }
 
 int main(void)
 {
-    printf("TicTacToe\n");
-
-    char board[3][3] = {
-        { '-', '-', '-' },
-        { '-', '-', '-' },
-        { '-', '-', '-' }
+    printf("TicTacToe [InCoMpLeTo :'(]\n");
+    char board[4][4] = {
+        { '-', '-', '-', '-' },
+        { '-', '-', '-', '-' },
+        { '-', '-', '-', '-' },
+        { '-', '-', '-', '-' }
     };
-
     char turn = 'X';
     char winner = '-';
     int cell = 0;
@@ -103,8 +101,8 @@ int main(void)
             exit(EXIT_FAILURE);
         }
         if (cell >= 0 && cell <= CELL_MAX) {
-            int row = cell / 3;
-            int colum = cell % 3;
+            int row = cell / 4;
+            int colum = cell % 4;
             if (board[row][colum] == '-') {
                 board[row][colum] = turn;
                 turn = turn == 'X' ? 'O' : 'X';
