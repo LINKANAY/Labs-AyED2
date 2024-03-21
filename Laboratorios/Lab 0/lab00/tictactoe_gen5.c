@@ -10,7 +10,8 @@ $> gcc -Wall -Wextra -std=c99 -g miarchivo.c -o miprograma
 gdb ./miprograma
 break miprograma:numerodelineadecodigo
 run
-enable
+enable           // para habilitar los breakpoint
+print varible     // para saber el valor de la variable
 next
 step
 continue
