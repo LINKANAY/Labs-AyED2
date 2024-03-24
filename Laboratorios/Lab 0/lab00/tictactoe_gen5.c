@@ -53,43 +53,85 @@ void print_board(char board[SIZE][SIZE])
 char get_winner(char board[SIZE][SIZE])
 {
     char winner = '-';
-    int diagonalI = 0;
-    for (int i = 0; i < SIZE; i++)
-    {
-        if (board[0][0] == board[i][i])
-        {
-            diagonalI++;
-        }        
-    }
-    if (diagonalI == SIZE)
-    {
-        winner = board[0][0];
-    }
+    //int diagonalI = 0;
 
-    int diagonalD = 0;
-    int j = (SIZE - 1);
+    int horizontal = 0;
+    int vertical = 0;
     for (int i = 0; i < SIZE; i++)
     {
-        while (j > i)
+        for (int j = 0; j < SIZE; j++)
         {
-            if (board[0][j] == board[i+1][j-1])
+            if (board[i][j] == board[i][j+1])
             {
-                printf ("el valor de diagonalD antes: %d\n", j);
-                diagonalD++;
-                printf ("el valor de diagonalD despues: %d\n", j);
-                
+                horizontal++;
+            }else if (board[0][0] == board[j][0])
+            {
+                vertical++;
             }
             
-            break;
             
-        }   
-        j--;    
+        }
+
+        
+        
+    }
+    if (horizontal == SIZE || vertical == SIZE)
+    {
+        winner == board[0][0];
     }
     
-    if (diagonalD == SIZE)
-    {
-        winner = board[0][SIZE];
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // int k = (SIZE -1);
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     if (board[SIZE-1][0] == board[i+1][k])
+    //     {
+    //         diagonalI++;
+    //     }        
+    // }
+    // if (diagonalI == SIZE)
+    // {
+    //     winner = board[SIZE -1][0];
+    // }
+
+    // int diagonalD = 0;
+    // int j = (SIZE - 1);
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     while (j > i)
+    //     {
+    //         if (board[0][j] == board[i+1][j-1])
+    //         {
+    //             printf ("el valor de diagonalD antes: %d\n", j);
+    //             diagonalD++;
+    //             printf ("el valor de diagonalD despues: %d\n", j);
+                
+    //         }
+            
+    //         break;
+            
+    //     }   
+    //     j--;    
+    // }
+    
+    // if (diagonalD == SIZE)
+    // {
+    //     winner = board[0][SIZE];
+    // }
     
 /*     
     if ((board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == board[3][3] )|| (board[3][0] == board[2][1] && board[3][0] == board[1][2] && board[3][0] == board[0][3]) )
@@ -131,7 +173,7 @@ bool has_free_cell(char board[SIZE][SIZE])
 
 int main(void)
 {
-    printf("TicTacToe [InCoMpLeTo :'(]\n");
+    
     char board[SIZE][SIZE];
     for (int i = 0; i < SIZE; i++)
     {

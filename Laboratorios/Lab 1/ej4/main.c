@@ -8,10 +8,9 @@
 /* Maximum allowed length of the array */
 #define MAX_SIZE 100000
 
-
 int main(int argc, char *argv[]) {
     char *filepath = NULL;
-
+    bool ordenado = false;
     /* parse the filepath given in command line arguments */
     filepath = parse_filepath(argc, argv);
     
@@ -23,6 +22,13 @@ int main(int argc, char *argv[]) {
     
     /*dumping the array*/
     array_dump(array, length);
+    ordenado = array_is_sorted(array, length);
+    if (ordenado)
+    {
+        printf("El arreglo está ordenado.\n");
+    }else{
+        printf("El arreglo no está ordenado.\n");
+    }
     
     return EXIT_SUCCESS;
 }
