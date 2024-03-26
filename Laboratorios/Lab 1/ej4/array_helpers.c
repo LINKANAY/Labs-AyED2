@@ -7,10 +7,9 @@ bool array_is_sorted(int a[], unsigned int length){
     bool ordenado = true;
     for (unsigned i = 0; i < length -1; i++)
     {  
-        if (a[i] > a[i+1])
+        if (!ordenado || a[i] > a[i+1])
         {
             ordenado = false;
-        }else{
             break;
         }
     }
@@ -55,18 +54,9 @@ unsigned int array_from_file(int array[],
                              unsigned int max_size,
                              const char *filepath) {
     FILE *file = fopen(filepath, "r");
-    if (file == NULL) {
-        printf("Error: No se pudo abrir el archivo.\n");
-        return 0;
-    }
 
     unsigned int dimension;
-    if (fscanf(file, "%u", &dimension) != 1) {
-        printf("Error: No se pudo leer la dimensión del arreglo.\n");
-        fclose(file);
-        return 0;
-    }
-
+    fscanf(file, "%u", &dimension);
     if (dimension < max_size)
     {
          for (unsigned int i = 0; i < dimension; i++)
@@ -74,12 +64,8 @@ unsigned int array_from_file(int array[],
             fscanf(file, "%d", &array[i]);
         }
     }
-    
-    
-    
     fclose(file);
-    return dimension;
-    
+    return dimension;   
 }
 
 void array_dump(int a[], unsigned int length) {

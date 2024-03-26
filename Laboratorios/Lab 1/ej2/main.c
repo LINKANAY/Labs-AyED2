@@ -70,7 +70,7 @@ void array_dump(int a[], unsigned int length) {
     for (unsigned int i = 0; i < length; i++) {
         printf(" %d", a[i]);
         if (i < length - 1) {
-            printf(",");
+           printf(",");
         }
     }
     printf(" ]\n");

@@ -13,6 +13,7 @@ bool array_is_sorted(int a[], unsigned int length);
 void print_help(char *program_name);
 char *parse_filepath(int argc, char *argv[]);
 void array_swap(int a[], unsigned int i, unsigned int j);
+void invertirArray(int a[], unsigned int length);
 
 #endif
 

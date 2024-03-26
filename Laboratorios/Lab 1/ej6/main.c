@@ -19,23 +19,7 @@ int main(int argc, char *argv[]) {
     
     /* parse the file to fill the array and obtain the actual length */
     unsigned int length = array_from_file(array, MAX_SIZE, filepath);
-
-    unsigned int inicio = 0;
-    unsigned int fin = length -1;
-    unsigned int temp;
-    while (inicio < fin)
-    {
-        temp = array[inicio];
-        array[inicio] = array[fin];
-        array[fin] = temp;
-
-        inicio++;
-        fin--;
-    }
-
-    
-
-
+    invertirArray(array, length);
     /*dumping the array*/
     array_dump(array, length);
     ordenado = array_is_sorted(array, length);  //ordenado ?
