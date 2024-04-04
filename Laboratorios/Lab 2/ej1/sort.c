@@ -8,7 +8,14 @@
 
 
 static void insert(int a[], unsigned int i) {
-    /* needs implementation */
+    unsigned int j;
+    j = i;
+    while (j > 1 && (a[j] < a[j-1]))
+    {
+        swap(a, j-1, j);
+        j--;
+    }
+    
 }
 
 void insertion_sort(int a[], unsigned int length) {
