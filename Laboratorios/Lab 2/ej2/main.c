@@ -58,6 +58,8 @@ int main(int argc, char *argv[]) {
     int copy[MAX_SIZE];
     array_copy(copy, array, length);
 
+    quick_sort(array, length);
+    
     /* show the ordered array in the screen */
     array_dump(array, length);
 
@@ -68,3 +70,9 @@ int main(int argc, char *argv[]) {
     assert(array_is_permutation_of(copy, array, length));
     return EXIT_SUCCESS;
 }
+
+/*
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter
+./sorter ../input/example-unsorted.in
+*/

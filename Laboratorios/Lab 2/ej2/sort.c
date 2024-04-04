@@ -8,6 +8,16 @@
 
 
 static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
+    unsigned int pivot = izq;
+    if (der > izq)
+    {
+        partition(a, izq, der);
+        quick_sort_rec(a, izq, pivot-1);
+        quick_sort_rec(a, pivot+1, der);
+    }
+    
+
+
  /* needs implementation */
 
     /* no implementes partition, ya está implementado en sort_helpers.o
