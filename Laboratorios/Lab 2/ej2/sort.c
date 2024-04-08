@@ -7,18 +7,12 @@
 #include "sort.h"
 
 
-static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
+void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
     unsigned int pivot = izq;
-    printf("uno %u, %u, %u\n", izq, pivot, der);
-    array_dump(a, pivot);
     if (der > izq)
     {
         pivot = partition(a, izq, der);
-        printf("dos %u, %u, %u\n", izq, pivot, der);
-        array_dump(a, pivot);
         quick_sort_rec(a, izq, (pivot));
-        printf("tres %u, %u, %u\n", izq, pivot, der);
-        array_dump(a, pivot);
         quick_sort_rec(a, (pivot+1), der);
     }
     

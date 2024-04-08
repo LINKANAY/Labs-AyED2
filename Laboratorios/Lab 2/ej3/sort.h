@@ -11,5 +11,6 @@ void quick_sort(int a[], unsigned int length);
     The array 'a' must have exactly 'length' elements.
 
 */
+void quick_sort_rec(int a[], unsigned int izq, unsigned int der);
 
 #endif
