@@ -45,12 +45,12 @@ void insertion_sort(int a[], unsigned int length) {
 
 static unsigned int partition(int a[], unsigned int izq, unsigned int der) {
     /* copiá acá la implementación que hiciste en el ejercicio 3 */
-       unsigned int i, j , pivot;
-   pivot = izq;
-   i = izq + 1;
-   j = der;
-   while (i <= j)
-   {
+    unsigned int i, j , pivot;
+    pivot = izq;
+    i = izq + 1;
+    j = der;
+    while (i <= j)
+    {
         if (goes_before(a[i], a[pivot]))
         {
             i++;
@@ -62,18 +62,18 @@ static unsigned int partition(int a[], unsigned int izq, unsigned int der) {
             i++;
             j--;
         }        
-   }   
-   swap(a, pivot, j);
-   pivot = j;
-   return pivot;
+    }   
+    swap(a, pivot, j);
+    pivot = j;
+    return pivot;
 }
 
 static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
     /* copiá acá la implementación que hiciste en el ejercicio 2 */
-    unsigned int pivot = izq;
+    //unsigned int pivot = izq;
     if (der > izq)
     {
-        pivot = partition(a, izq, der);
+        unsigned int pivot = partition(a, izq, der);
         quick_sort_rec(a, izq, (pivot));
         quick_sort_rec(a, (pivot+1), der);
     }
