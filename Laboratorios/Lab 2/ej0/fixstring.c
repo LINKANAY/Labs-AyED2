@@ -4,43 +4,47 @@
 #include "fixstring.h"
 
 unsigned int fstring_length(fixstring s) {
-    unsigned int longitud = 0;
-    for (unsigned int i = 0; i < FIXSTRING_MAX; i++)
+    unsigned int length = 0;
+    while (s[length] != '\0')
     {
-        if (s[i] != 0)
-        {
-            longitud++;
-        }
-        else{
-            break;
-        }
+        length++;
     }
-    return longitud;   
+    return length;   
 }
 
 bool fstring_eq(fixstring s1, fixstring s2) {
-    bool iguales = true;
-    for (unsigned int i = 0; i < FIXSTRING_MAX; i++)
+    bool same = false;
+    if (fstring_length(s1) == fstring_length(s2))
     {
-        if (s1[i] != s2[i] || (s1[i] == ' ' && s2[i] == ' '))
+        unsigned int i = 0;
+        while (i < fstring_length(s1))
         {
-            iguales = false;
-            break;
-        }
+            if (s1[i] == s2[i])
+            {
+                same = true;
+            }
+            i++;            
+        }        
     }
-    return iguales;
+    return same;
 }
 
 bool fstring_less_eq(fixstring s1, fixstring s2) {
-    bool menorIgual = true;
-    for (unsigned int i = 0; i < FIXSTRING_MAX; i++)
+    unsigned int lengthS1 = fstring_length(s1);
+    unsigned int lengthS2 = fstring_length(s2);    
+    unsigned int minLength = (lengthS1 < lengthS2) ? lengthS1 : lengthS2;
+
+    for (unsigned int i = 0; i < minLength; i++)
     {
-        if (s1[i] > s2[i])
+        if (s1[i] < s2[i])
         {
-            menorIgual = false;
-            break;
-        }
+            return true;
+        }else if (s1[i] > s2[i])
+        {
+            return false;
+        }        
     }
-    return menorIgual;
+    return (lengthS1 <= lengthS2);   
+
 }
 

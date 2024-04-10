@@ -16,30 +16,27 @@ static unsigned int partition(int a[], unsigned int izq, unsigned int der) {
      - elements in a[izq,pivot) all 'go_before' (according to function goes_before) a[pivot]
      - a[pivot] 'goes_before' all the elements in a(pivot,der]
     */
-   unsigned int leftT, rightT, pivot;
-    pivot = izq;
-    leftT = izq +1;
-    rightT = der;
-    while (leftT <= rightT)
-    {
-        while (leftT < der && goes_before(a[leftT], a[pivot]))
+   unsigned int i, j , pivot;
+   pivot = izq;
+   i = izq + 1;
+   j = der;
+   while (i <= j)
+   {
+        if (goes_before(a[i], a[pivot]))
         {
-            leftT++;
-        }
-        while (rightT > izq && goes_before(a[pivot], a[rightT]))
+            i++;
+        }else if (goes_before(a[pivot], a[j]))
         {
-            rightT--;
-        }
-        if (leftT < rightT)
-        {
-            swap(a, leftT, rightT);
-            leftT++;
-            rightT--;
-        }
-    }
-    swap(a, pivot, rightT);
-    pivot = rightT;
-    return pivot;
+            j--;
+        }else{
+            swap(a, i, j);
+            i++;
+            j--;
+        }        
+   }   
+   swap(a, pivot, j);
+   pivot = j;
+   return pivot;
 }
 
 void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
@@ -54,17 +51,12 @@ void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
         quick_sort_rec(a, izq, (pivot));
         printf("tres %u, %u, %u\n", izq, pivot, der);
         array_dump(a, pivot);
-        quick_sort_rec(a, (pivot), der);
+        quick_sort_rec(a, (pivot+1), der);
     }
     
 
 
- /* needs implementation */
 
-    /* no implementes partition, ya está implementado en sort_helpers.o
-       (no se puede leer, pero en sort_helpers.h vas a encontrar información
-        para saber cómo usarlo)
-    */
 }
 
 

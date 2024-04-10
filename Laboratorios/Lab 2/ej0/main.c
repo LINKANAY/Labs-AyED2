@@ -30,8 +30,7 @@ int main(void) {
     for (int i=0; i < N_WORDS; i++) {
         for (int j=0; j < N_WORDS; j++) {
             if (fstring_eq(words[i], words[j])) {
-                printf("Los strings '%s' y '%s' son iguales\n",
-                        words[i], words[j]);
+                printf("Los strings '%s' y '%s' son iguales\n", words[i], words[j]);
             }
             printf("El string '%s' va %s alfabeticamente que '%s'\n\n", 
                    words[i],
