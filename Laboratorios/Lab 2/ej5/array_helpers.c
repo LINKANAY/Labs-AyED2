@@ -35,7 +35,17 @@ void array_dump(fixstring a[], unsigned int length) {
         }
     }
 }
-
+void array_dump2(fixstring a[], unsigned int length) {
+    fprintf(stdout, "%u\n", length);
+    for (unsigned int i = 0; i < length; i++) {
+        fprintf(stdout, "%s", a[i]);
+        if (i < length - 1) {
+            fprintf(stdout, " \n");
+        } else {
+            fprintf(stdout, "\n");
+        }
+    }
+}
 
 bool array_is_permutation_of(fixstring a[], fixstring b[], unsigned int length) {
     unsigned int i = 0;

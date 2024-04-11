@@ -13,6 +13,7 @@ bool array_is_permutation_of(fixstring a[], fixstring other[], unsigned int leng
 */
 
 void array_dump(fixstring a[], unsigned int length);
+void array_dump2(fixstring a[], unsigned int length);
 /*
     Write the content of the array 'a' into stdout. The array 'a' must have
     exactly 'length' elements.
