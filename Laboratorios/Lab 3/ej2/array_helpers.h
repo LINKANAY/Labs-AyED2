@@ -46,5 +46,7 @@ void array_dump(WeatherTable a);
  * @param filepath file with weather data
  */
 void array_from_file(WeatherTable a, const char *filepath);
+char *parse_filepath(int argc, char *argv[]);
+void print_help(char *program_name);
 
 #endif

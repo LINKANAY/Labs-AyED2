@@ -59,6 +59,48 @@ void array_from_file(WeatherTable array, const char *filepath) {
         }
         Weather weather = weather_from_file(file);
         /* Completar acá: Guardar la medición de clima en el arreglo multidimensional */
+        array[k_year-1980][k_month-1][k_day-1] = weather;
+
     }
     fclose(file);
+}
+
+
+/**
+ * @brief print usage help
+ * @param[in] program_name Executable name
+ */
+void print_help(char *program_name) {
+    /* Print the usage help of this program. */
+    printf("Usage: %s <input file path>\n\n"
+           "Load climate data from a given file in disk.\n"
+           "\n"
+           "The input file must exist in disk and every line in it must have the following format:\n\n"
+           "<year> <month> <day> <temperature> <high> <low> <pressure> <moisture> <precipitations>\n\n"
+           "Those elements must be integers and will be copied into the multidimensional integer array 'a'.\n"
+           "The dimensions of the array are given by the macro tclimate.\n"
+           "\n\n",
+           program_name);
+}
+
+/**
+ * @brief reads file path from command line
+ *
+ * @param[in] argc amount of command line arguments
+ * @param[in] argv command line arguments
+ *
+ * @return An string containing read filepath
+ */
+char *parse_filepath(int argc, char *argv[]) {
+    /* Parse the filepath given by command line argument. */
+    char *result = NULL;
+
+    if (argc < 2) {
+        print_help(argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    result = argv[1];
+
+    return (result);
 }
