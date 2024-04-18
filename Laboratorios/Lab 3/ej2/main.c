@@ -48,11 +48,11 @@ int main(int argc, char *argv[])
   {
     printf("La temperatura mas alta de %u fue de: %d\n", i + 1980, output[i]);
   }
-  int output2[YEARS];
+  const char *output2[YEARS];
   preciMax(array, output2);
   for (unsigned int i = 0; i < YEARS; i++)
   {
-    printf("El mes que registro mas precipitaciones en %u fue: %d\n", i + 1980, output2[i]);
+    printf("El mes que registro mas precipitaciones en %u fue: %s\n", i + 1980, output2[i]);
   }
 
   return (EXIT_SUCCESS);

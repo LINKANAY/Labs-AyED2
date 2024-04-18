@@ -42,14 +42,19 @@ void tempMax(WeatherTable a, int output[YEARS])
     }
 }
 
-void preciMax(WeatherTable a, int  output[YEARS])
+void preciMax(WeatherTable a, const char *output[YEARS])
 {
-    unsigned int maxPrec = a[0][january][FST_DAY]._rainfall;
-    int listPrec[MONTHS-1];
+    int listPrec[MONTHS - 1];
+
+    static const char *month_names[] = {
+        "January", "February", "March", "April", "May", "June", "July", "August",
+        "September", "October", "November", "December"};
+
     for (unsigned int i = 0u; i < YEARS; i++)
     {
         for (month_t month = january; month <= december; month++)
         {
+            unsigned int maxPrec = a[i][month][FST_DAY]._rainfall;
             for (unsigned int j = 0u; j < DAYS; j++)
             {
                 if (maxPrec < a[i][month][j]._rainfall)
@@ -59,16 +64,16 @@ void preciMax(WeatherTable a, int  output[YEARS])
             }
             listPrec[month] = maxPrec;
         }
-        month_t maxMonth = january;
-        for (month_t month = january; month < december; month++)
+        int maxMonth = listPrec[january];
+        month_t mes = january;
+        for (month_t month = january; month <= december; month++)
         {
-            if (listPrec[month] > listPrec[month+1])
+            if (maxMonth < listPrec[month])
             {
-                maxMonth = month;
-            }            
+                maxMonth = listPrec[month];
+                mes = (month);
+            }
         }
-        output[i] = maxMonth;
-        maxPrec = a[i][january][FST_DAY]._rainfall;
-        
+        output[i] = month_names[mes];
     }
 }

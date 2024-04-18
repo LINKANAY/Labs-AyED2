@@ -6,6 +6,6 @@
 
 int tempMin(WeatherTable a);
 void tempMax(WeatherTable a, int output[YEARS]);
-void preciMax(WeatherTable a, int output[YEARS]);
+void preciMax(WeatherTable a, const char *output[YEARS]);
 
-#endif 
+#endif
