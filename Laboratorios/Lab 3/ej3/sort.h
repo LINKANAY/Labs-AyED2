@@ -39,5 +39,11 @@ bool array_is_sorted(player_t atp[], unsigned int length);
  */
 void sort(player_t a[], unsigned int length);
 
+void quick_sort_rec(player_t a[], unsigned int izq, unsigned int der);
+
+void swap(player_t a[], unsigned int i, unsigned int j);
+/* Exchanges elements of array 'a' in the given positions 'i' and 'j'
+   Array remains the same if the two positions are the same
+*/
 
 #endif
