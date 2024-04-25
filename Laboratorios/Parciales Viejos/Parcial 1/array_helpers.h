@@ -43,4 +43,7 @@ unsigned int best_profit(BakeryProductTable a);
 
 void array_from_file(BakeryProductTable a, const char *filepath);
 
+char *parse_filepath(int argc, char *argv[]);
+void print_help(char *program_name);
+
 #endif
