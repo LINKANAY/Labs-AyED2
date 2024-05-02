@@ -38,6 +38,7 @@ bool array_is_sorted(player_t atp[], unsigned int length);
  * @param[in]      length  Length of players array
  */
 void sort(player_t a[], unsigned int length);
-
+void quick_sort_rec(player_t a[], unsigned int izq, unsigned int der);
+void swap(player_t a[], unsigned int i, unsigned int j);
 
 #endif
