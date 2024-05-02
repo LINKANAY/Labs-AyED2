@@ -7,11 +7,21 @@
 
 static const int AMOUNT_OF_FLIGHT_VARS = 3;
 
-Flight flight_from_file(FILE* file)
+Flight flight_from_file(FILE *file)
 {
-    Flight flight;
+  Flight flight;
 
-    /* COMPLETAR */
+  if (file == NULL)
+  {
+    fprintf(stderr, "File does not exist.\n");
+    exit(EXIT_FAILURE);
+  }
+  int res = fscanf(file, EXPECTED_FLIGHT_FILE_FORMAT, &flight.hour, &flight.delay, &flight.passengers_amount);
+  if (res != AMOUNT_OF_FLIGHT_VARS)
+  {
+    fprintf(stderr, "Invalid product data.\n");
+    exit(EXIT_FAILURE);
+  }
 
-    return flight;
+  return flight;
 }
