@@ -23,11 +23,17 @@ int main(void)
   int x = 1;
   person_t m = {90, 'M'};
   int a[] = {0, 1, 2, 3};
-  int y = 10;
-  int q = y;
-  int b = y;
-  int c = q + b;
-  printf("C: %d", c);
+
+  int *p;
+  p = NULL;
+  p = &x;
+  *p = 9;
+  person_t *temp;
+  temp = &m;
+  temp->age = 100;
+  p = &a[1];
+  *p = 42;
+  printf("valor: %d\n", *p);
 
   /* Completar aquí:
      Al finalizar la ejecución las variables deben tener los siguientes valores
@@ -42,12 +48,11 @@ int main(void)
      AYUDA: podes usar GDB para consultares valores de variables y la dirección de memoria donde estan alojadas.
   */
 
-
   /*------------------------------------------------------------------------------*/
 
   printf("x = %d\n", x);
   printf("m = (%d, %c)\n", m.age, m.name_initial);
   printf("a[1] = %d\n", a[1]);
 
-  return EXIT_SUCCESS;
+  return (EXIT_SUCCESS);
 }

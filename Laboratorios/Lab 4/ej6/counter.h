@@ -4,8 +4,7 @@
 #include <stdbool.h>
 
 /* counter as a pointer to structs to guarantee encapsulation */
-typedef struct _counter * counter;
-
+typedef struct _counter *counter;
 
 /* Constructors */
 counter counter_init(void);
@@ -18,7 +17,6 @@ void counter_inc(counter c);
 /*
     Increments the counter c.
 */
-
 
 /* Operations */
 bool counter_is_init(counter c);

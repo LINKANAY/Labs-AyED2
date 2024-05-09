@@ -9,7 +9,8 @@
 /* Maximum allowed length of the array */
 static const unsigned int MAX_SIZE = 100000u;
 
-void print_help(char *program_name) {
+void print_help(char *program_name)
+{
     /* Print the usage help of this program. */
     printf("Usage: %s <input file path>\n\n"
            "Compute average for the list of numbers in file.\n"
@@ -17,11 +18,13 @@ void print_help(char *program_name) {
            program_name);
 }
 
-char *parse_filepath(int argc, char *argv[]) {
+char *parse_filepath(int argc, char *argv[])
+{
     /* Parse the filepath given by command line argument. */
     char *result = NULL;
 
-    if (argc < 2) {
+    if (argc < 2)
+    {
         print_help(argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -31,22 +34,40 @@ char *parse_filepath(int argc, char *argv[]) {
     return (result);
 }
 
-
-float average(list l) {
-/*
-    Needs implementation.
-*/
-}
-
-list array_to_list(int array[], unsigned int length) {
-    /* Initialize the list */
-    for (unsigned int i = 0u; i < length; ++i) {
-        /* Add element to the list  */
+float average(list l)
+{
+    /*
+        Needs implementation.
+    */
+    float count = 0;
+    float promedio = 0.0;
+    int largo = length(l);
+    list laux = l;
+    while (laux != NULL)
+    {
+        promedio += head(laux);
+        laux = tail(laux);
+        count++;
     }
-    /* Return list */
+    if (count == 0)
+    {
+        return 0.0;
+    }
+    return promedio / (float)count;
 }
 
-int main(int argc, char *argv[]) {
+list array_to_list(int array[], unsigned int length)
+{
+    list lista = empty();
+    for (unsigned int i = 0u; i < length; ++i)
+    {
+        lista = addl(lista, array[i]);
+    }
+    return lista;
+}
+
+int main(int argc, char *argv[])
+{
     char *filepath = NULL;
 
     /* parse the filepath given in command line arguments */

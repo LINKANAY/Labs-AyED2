@@ -47,5 +47,7 @@ unsigned int compensation_cost(DelayTable a, unsigned int hour);
  * @param filepath file with layover data
  */
 void array_from_file(DelayTable a, const char *filepath);
+void print_help(char *program_name);
+char *parse_filepath(int argc, char *argv[]);
 
 #endif

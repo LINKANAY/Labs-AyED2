@@ -22,5 +22,6 @@ int main(void) {
     // Se destruyen p y q
     p = pair_destroy(p);
     q = pair_destroy(q);
+    
     return EXIT_SUCCESS;
 }

@@ -5,10 +5,9 @@
 
 #ifndef _FLIGHT_H
 #define _FLIGHT_H
-#define EXPECTED_FLIGHT_FILE_FORMAT /* COMPLETAR */
+#define EXPECTED_FLIGHT_FILE_FORMAT "%u %u %u "
 
 typedef enum { last_mile , layover } flight_t;
-
 #include <stdio.h>
 
 /** @brief Type used to represent flight data.*/
