@@ -43,22 +43,16 @@ float average(list l)
     float promedio = 0.0;
     int largo = length(l);
     list laux = l;
-    printf("valor1 %f\n", promedio);
-    printf("valor %f\n", count);
     while (laux != NULL)
     {
         promedio += head(laux);
         laux = tail(laux);
         count++;
-        printf("valor2 %f\n", promedio);
-        printf("valor %f\n", count);
     }
     if (count == 0)
     {
         return 0.0;
     }
-    printf("valor3 %f\n", promedio);
-    printf("valor %f\n", count);
     return promedio / (float)count;
 }
 
@@ -93,7 +87,6 @@ int main(int argc, char *argv[])
 
     /* call the average function */
     printf("The average is: %.2f \n", average(l));
-    
 
     return (EXIT_SUCCESS);
 }
