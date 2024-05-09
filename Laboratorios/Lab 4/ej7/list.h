@@ -1,13 +1,14 @@
-#ifndef _LIST_H
-#define _LIST_H
+#ifndef LIST_H
+#define LIST_H
 
 #include <stdbool.h>
 typedef int list_elem;
-typedef struct list *list;
+typedef struct list_t *list;
 // constructors
 
 list empty();
 /*crea una lista vacia*/
+
 list addl(list list, list_elem elem);
 /*agrega el elemento e al comienzo de la lista list*/
 
@@ -30,7 +31,7 @@ list_elem length(list list);
 /*devuelve la cantidad de elementos de la lista list*/
 list concat(list list1, list list2);
 /*agrega al final de la list1 todos los elementos de la list2 en el mismo orden*/
-list_elem index(list list, int n);
+list_elem nth_elem(list list, int n);
 /*devuelve el n-seimo elemento de la lista list*/
 /*PRE: length(list) > n*/
 list take(list list, int n);
