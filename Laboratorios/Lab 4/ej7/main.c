@@ -39,25 +39,27 @@ float average(list l)
     /*
         Needs implementation.
     */
-    int largo;
-    float elem;
-    list laux;
-    float promedio;
-
-    laux = copy_list(l);
-    promedio = 0.0;
-    largo = length(l);
-    if (largo == 0) {
-        return 0.0; 
-    }
-    while (!is_empty(laux))
+    float count = 0;
+    float promedio = 0.0;
+    int largo = length(l);
+    list laux = l;
+    printf("valor1 %f\n", promedio);
+    printf("valor %f\n", count);
+    while (laux != NULL)
     {
-        elem = head(laux);
-        promedio = promedio + elem;
+        promedio += head(laux);
         laux = tail(laux);
+        count++;
+        printf("valor2 %f\n", promedio);
+        printf("valor %f\n", count);
     }
-    destroy(laux);
-    return (promedio/largo);
+    if (count == 0)
+    {
+        return 0.0;
+    }
+    printf("valor3 %f\n", promedio);
+    printf("valor %f\n", count);
+    return promedio / (float)count;
 }
 
 list array_to_list(int array[], unsigned int length)
@@ -65,7 +67,7 @@ list array_to_list(int array[], unsigned int length)
     list lista = empty();
     for (unsigned int i = 0u; i < length; ++i)
     {
-        addl(lista, array[i]);
+        lista = addl(lista, array[i]);
     }
     return lista;
 }
@@ -91,6 +93,7 @@ int main(int argc, char *argv[])
 
     /* call the average function */
     printf("The average is: %.2f \n", average(l));
+    
 
     return (EXIT_SUCCESS);
 }

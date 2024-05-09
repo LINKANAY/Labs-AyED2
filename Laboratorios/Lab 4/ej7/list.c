@@ -71,23 +71,21 @@ list tail(list lista)
 /*agrega el elemento e al final de la lista list*/
 list addr(list lista, list_elem elem)
 {
-    list lis1;
     list lis2 = malloc(sizeof(struct list_t));
     lis2->elem = elem;
     lis2->next = NULL;
-    if (!(is_empty(lista)))
+    if (lista == NULL)
     {
-        lis1 = lista;
-        while (lis1->next != NULL)
-        {
-            lis1 = lis1->next;
-        }
-        lis1->next = lis2;
+        return lis2;
     }
-    else
+
+    list lis1 = lista;
+    while (lis1->next != NULL)
     {
-        lista = lis2;
+        lis1 = lis1->next;
     }
+    lis1->next = lis2;
+    free(lis2);
     return lista;
 }
 
@@ -188,10 +186,6 @@ list drop(list lista, int n)
 list copy_list(list lista)
 {
     list lfinal = empty();
-    if (is_empty(lista))
-    {
-        return lfinal;
-    }
 
     while (lista != NULL)
     {
