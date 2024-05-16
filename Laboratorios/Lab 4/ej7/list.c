@@ -45,6 +45,7 @@ bool is_empty(list lista)
 /*PRE: not is_empty(list)*/
 list_elem head(list lista)
 {
+    assert(!(is_empty(lista)));
     list_elem ele;
     if (!(is_empty(lista)))
     {
@@ -57,13 +58,12 @@ list_elem head(list lista)
 /*PRE: not is_empty(list)*/
 list tail(list lista)
 {
-    if (!(is_empty(lista)))
-    {
-        list lis = malloc(sizeof(struct list_t));
-        lis = lista;
-        lista = lista->next;
-        free(lis);
-    }
+    assert(!(is_empty(lista)));
+
+    list lis = malloc(sizeof(struct list_t));
+    lis = lista;
+    lista = lista->next;
+    free(lis);
 
     return lista;
 }
@@ -123,19 +123,19 @@ list concat(list list1, list list2)
 list_elem nth_elem(list lista, int n)
 {
     list_elem num = 0;
-    if (length(lista) > n)
+    assert(length(lista) > n);
+
+    list lis = malloc(sizeof(struct list_t));
+    lis = lista;
+    int i;
+    i = 0;
+    while (i <= n)
     {
-        list lis = malloc(sizeof(struct list_t));
-        lis = lista;
-        int i;
-        i = 0;
-        while (i <= n)
-        {
-            lis = lis->next;
-            i = i + 1;
-        }
-        num = lis->elem;
+        lis = lis->next;
+        i = i + 1;
     }
+    num = lis->elem;
+
     return num;
 }
 

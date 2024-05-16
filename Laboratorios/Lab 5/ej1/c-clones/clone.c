@@ -7,8 +7,8 @@
 
 char *string_clone(const char *str, size_t length)
 {
-    char clon[MAX_LENGTH];
-    char *output = clon;
+    //char clon[MAX_LENGTH];
+    char *output = malloc(sizeof(char) * MAX_LENGTH);
     for (size_t i = 0; i < length; i++)
     {
         output[i] = str[i];
@@ -67,7 +67,7 @@ int main(void)
     copy[4] = 'n';
     copy[5] = 'g';
     printf("Copia   :\n" ANSI_CYAN " %s\n", copy);
-    copy = NULL;
+    free(copy);
 
     return EXIT_SUCCESS;
 }

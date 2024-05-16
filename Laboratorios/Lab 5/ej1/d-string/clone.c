@@ -6,12 +6,14 @@
 #define MAX_LENGTH 1820
 
 char *string_clone(const char *str) {
-    char *clone=NULL;
+    char *clone=malloc(sizeof(char) * MAX_LENGTH);
     /*
      * COMPLETAR
      *
      */
-    return output;
+    strcpy(clone,str);
+
+    return clone;
 }
 
 

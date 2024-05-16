@@ -7,8 +7,8 @@
 
 char *string_clone(const char *str, size_t length)
 {
-    char clon[MAX_LENGTH];
-    char *output = clon;
+    //char clon[MAX_LENGTH];
+    char *output = malloc(sizeof(char) * MAX_LENGTH);
     for (size_t i = 0; i < length; i++)
     {
         output[i] = str[i];
@@ -19,7 +19,8 @@ char *string_clone(const char *str, size_t length)
 
 int main(void)
 {
-    char *original[] = ""
+    char *original = malloc(sizeof(char) * MAX_LENGTH);
+    char texto[] = ""
                       "______ time ago in a galaxy far, far away...\n\n\n" ANSI_BRGOLD
                       "         _______..___________.     ___      .______             \n"
                       "        /       ||           |    /   \\     |   _  \\          \n"
@@ -56,10 +57,10 @@ int main(void)
                       "                to    assist    the   overwhelmed\n"
                       "                Jedi....\n" ANSI_WHITE;
     char *copy = NULL;
-
+    original = texto;
     copy = string_clone(original, sizeof(original) / sizeof(*original));
     printf("Original:\n" ANSI_CYAN " %s\n", original);
-    original[0] = '\0';
+    
     copy[0] = 'A';
     copy[1] = ' ';
     copy[2] = 'l';
@@ -67,7 +68,7 @@ int main(void)
     copy[4] = 'n';
     copy[5] = 'g';
     printf("Copia   :\n" ANSI_CYAN " %s\n", copy);
-    copy = NULL;
+    free(copy);
 
     return EXIT_SUCCESS;
 }
