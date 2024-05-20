@@ -10,7 +10,8 @@
 /* Maximum allowed length of the array */
 static const unsigned int MAX_SIZE = 100u;
 
-void print_help(char *program_name) {
+void print_help(char *program_name)
+{
     /* Print the usage help of this program. */
     printf("Usage: %s <input file path>\n\n"
            "Sort an array given in a file in disk.\n"
@@ -27,11 +28,13 @@ void print_help(char *program_name) {
            program_name);
 }
 
-char *parse_filepath(int argc, char *argv[]) {
+char *parse_filepath(int argc, char *argv[])
+{
     /* Parse the filepath given by command line argument. */
     char *result = NULL;
 
-    if (argc < 2) {
+    if (argc < 2)
+    {
         print_help(argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -41,27 +44,31 @@ char *parse_filepath(int argc, char *argv[]) {
     return (result);
 }
 
-int main(int argc, char *argv[]) {
-  char *filepath = NULL;
+int main(int argc, char *argv[])
+{
+    char *filepath = NULL;
 
-  /* parse the filepath given in command line arguments */
-  filepath = parse_filepath(argc, argv);
+    /* parse the filepath given in command line arguments */
+    filepath = parse_filepath(argc, argv);
 
-  /* create an array of MAX_SIZE elements */
-  int array[MAX_SIZE];
+    /* create an array of MAX_SIZE elements */
+    int array[MAX_SIZE];
 
-  /* parse the file to fill the array and obtain the actual length */
-  unsigned int length = array_from_file(array, MAX_SIZE, filepath);
-  printf("Original: ");
-  array_dump(array, length);
+    /* parse the file to fill the array and obtain the actual length */
+    unsigned int length = array_from_file(array, MAX_SIZE, filepath);
+    printf("Original: ");
+    array_dump(array, length);
 
-  int *new_array=NULL;
-  /**
-  *
-  *  --- COMPLETAR ----
-  *
-  */
-  printf("Reversed: ");
-  array_dump(new_array, length);
-  return (EXIT_SUCCESS);
+    int *new_array = NULL;
+    stack st = stack_empty();
+
+    for (unsigned int i = 0; i < length; i++)
+    {
+        st = stack_push(st, array[i]);
+    }
+    new_array = stack_to_array(st);
+
+    printf("Reversed: ");
+    array_dump(new_array, length);
+    return (EXIT_SUCCESS);
 }

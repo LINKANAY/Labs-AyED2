@@ -1,6 +1,7 @@
 #include "stack.h"
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 struct _s_stack
 {
@@ -27,9 +28,8 @@ stack stack_push(stack s, stack_elem e)
 stack stack_pop(stack s)
 {
     assert(!stack_is_empty(s));
-    stack st = s;
     s = s->next;
-    free(st);
+
     return s;
 }
 
@@ -55,17 +55,23 @@ bool stack_is_empty(stack s) { return (s == NULL); }
 
 stack_elem *stack_to_array(stack s)
 {
-    stack_elem *st[stack_size(s)];
-    stack temp = s;
-    stack_elem i = 0;
-    while (i < stack_size(s))
+    if (s == NULL)
     {
-        st[i] = malloc(sizeof(stack_elem) * stack_size(s));
-        *st[i] = stack_top(temp);
-        temp = temp->next;
-        i++;
+        return NULL;
     }
-    return *st;
+    else
+    {
+        stack_elem *st = malloc(sizeof(stack_elem) * stack_size(s));
+
+        stack temp = s;
+        unsigned int length = stack_size(temp);
+        for (unsigned int i = 0; i < length; i++)
+        {
+            st[i] = stack_top(temp);
+            temp = stack_pop(temp);
+        }
+        return st;
+    }
 }
 
 stack stack_destroy(stack s)

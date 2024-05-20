@@ -5,19 +5,23 @@
 
 int main(void)
 {
-    unsigned int longitud = 0;
+    // unsigned int longitud = 0;
 
     stack st = stack_empty();
     st = stack_push(st, 1);
     st = stack_push(st, 2);
     st = stack_push(st, 3);
-    printf("elems: %d\n", stack_size(st));
-    stack_elem *lista = stack_to_array(st);
-    for (unsigned int i = 0; i < stack_size(st); i++)
+    printf("longitud: %d\n", stack_size(st));
+    stack_elem *lista = NULL;
+    lista = stack_to_array(st);
+    unsigned int longLista = stack_size(st);
+    for (unsigned int i = 0; i < longLista; i++)
     {
-        printf("elem %d: %d\n", i, lista[i]);
+        printf("elemento de lista %d: %d\n", i, lista[i]);
     }
-    // stack_destroy(st);
+    stack_destroy(st);
+    free(lista);
+    lista = NULL;
     return EXIT_SUCCESS;
 }
 
@@ -27,5 +31,7 @@ int main(void)
 // Si la pila queda vacía, ¿puedo volver a insertar elementos?
 // Rta: si se puede agregar elementos.
 
-// ¿La función stack_to_array() devuelve NULL para una pila vacía? ¿Devuelve los
-//  elementos en el orden correcto?
+// ¿La función stack_to_array() devuelve NULL para una pila vacía? 
+//Rta: no devuelve null
+//¿Devuelve los elementos en el orden correcto?
+//Rta: si devuelve los elementos en el orden correcto
