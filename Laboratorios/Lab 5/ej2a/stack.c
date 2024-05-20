@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <assert.h>
 #include "stack.h"
+#include <assert.h>
+#include <stdlib.h>
 
 struct _s_stack
 {
@@ -21,14 +21,13 @@ stack stack_push(stack s, stack_elem e)
     st->elem = e;
     st->next = s;
     s = st;
-    free(st);
     return s;
 }
 
 stack stack_pop(stack s)
 {
-    stack st = malloc(sizeof(struct _s_stack));
-    st = s;
+    assert(!stack_is_empty(s));
+    stack st = s;
     s = s->next;
     free(st);
     return s;
@@ -40,30 +39,33 @@ unsigned int stack_size(stack s)
     unsigned int length = 0;
     while (temp != NULL)
     {
-        temp->next;
+        temp = temp->next;
         length++;
     }
     return length;
 }
 
-bool stack_is_empty(stack s)
+stack_elem stack_top(stack s)
 {
-    return (s != NULL);
+    assert(!stack_is_empty(s));
+    return s->elem;
 }
+
+bool stack_is_empty(stack s) { return (s == NULL); }
 
 stack_elem *stack_to_array(stack s)
 {
-    stack_elem *st = calloc(stack_size(s), sizeof(stack_elem));
+    stack_elem *st[stack_size(s)];
     stack temp = s;
-    unsigned int i = 0;
-    while (i <= stack_size(s))
+    stack_elem i = 0;
+    while (i < stack_size(s))
     {
-        st[i] = temp->elem;
+        st[i] = malloc(sizeof(stack_elem) * stack_size(s));
+        *st[i] = stack_top(temp);
         temp = temp->next;
         i++;
     }
-
-    return st;
+    return *st;
 }
 
 stack stack_destroy(stack s)
