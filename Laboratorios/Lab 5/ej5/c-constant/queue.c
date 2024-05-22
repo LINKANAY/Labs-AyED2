@@ -136,3 +136,23 @@ queue queue_destroy(queue q)
     assert(q == NULL);
     return q;
 }
+
+queue queue_disscard(queue q, unsigned int n)
+{
+    assert(invrep(q) && n < queue_size(q));
+    if (n == 0)
+    {
+        return queue_dequeue(q);
+    }
+    struct s_node *node = q->first;
+    for (unsigned int i = 0; i < n - 1; i++)
+    {
+        node = node->next;
+    }
+    struct s_node *killme = node->next;
+    node->next = node->next->next;
+    killme = destroy_node(killme);
+    q->size--;
+    assert(invrep(q));
+    return q;
+}
