@@ -9,6 +9,7 @@ struct s_queue
 {
     unsigned int size;
     struct s_node *first;
+    struct s_node *last;
 };
 
 struct s_node
@@ -45,6 +46,8 @@ invrep(queue q)
 queue queue_empty(void)
 {
     queue q = malloc(sizeof(struct s_queue));
+    q->first = NULL;
+    q->last = NULL;
     q->size = 0;
     assert(invrep(q) && queue_is_empty(q));
     return q;
@@ -54,21 +57,18 @@ queue queue_enqueue(queue q, queue_elem e)
 {
     assert(invrep(q));
     struct s_node *new_node = create_node(e);
-    if (q->first == NULL)
+    if (q->last == NULL)
     {
         q->first = new_node;
-        q->size++;
+        q->last = new_node;
     }
     else
     {
-        struct s_node *node = q->first;
-        while (node->next != NULL)
-        {
-            node = node->next;
-        }
-        node->next = new_node;
-        q->size++;
+        q->last->next = new_node;
+        q->last = new_node;
     }
+    q->size++;
+
     assert(invrep(q) && !queue_is_empty(q));
     return q;
 }
