@@ -57,6 +57,9 @@ int main(int argc, char *argv[]) {
     printf("length: %u\n", queue_size(q));
     queue_dump(q, stdout);
     
+    queue_disscard(q, 2);
+    printf("length: %u\n", queue_size(q));
+    queue_dump(q, stdout);
     // 
     // COMPLETAR: Liberar la memoria usada por <q>
     //

@@ -18,10 +18,12 @@ stack stack_empty()
 
 stack stack_push(stack s, stack_elem e)
 {
+    
     stack st = malloc(sizeof(struct _s_stack));
     st->elem = e;
     st->next = s;
     s = st;
+    free(st);
     return s;
 }
 
@@ -29,7 +31,6 @@ stack stack_pop(stack s)
 {
     assert(!stack_is_empty(s));
     s = s->next;
-    
     return s;
 }
 
