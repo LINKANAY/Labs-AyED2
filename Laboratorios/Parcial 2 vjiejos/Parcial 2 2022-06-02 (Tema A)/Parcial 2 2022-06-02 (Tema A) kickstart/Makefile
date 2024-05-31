@@ -3,6 +3,8 @@ CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99 -g
 SOURCES = pqueue.c main.c
 OBJECTS = $(SOURCES:.c=.o)
 TARGET = dispatch_patients
+VALGRIND1 = valgrind --track-origins=yes
+VALGRIND2 = valgrind --leak-check=full
 
 .PHONY: clean
 
@@ -16,3 +18,9 @@ $(TARGET): $(OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS) $(TARGET)
+
+valgri1:
+	$(VALGRIND1) ./$(TARGET)
+
+valgri2:
+	$(VALGRIND2) ./$(TARGET)
