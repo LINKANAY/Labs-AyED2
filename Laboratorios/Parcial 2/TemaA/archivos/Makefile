@@ -23,3 +23,7 @@ $(TARGET): $(OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS) $(TARGET)
+
+VALGRICOMAND = valgrind --leak-check=full 
+valgri:
+	$(VALGRICOMAND) ./$(TARGET)
