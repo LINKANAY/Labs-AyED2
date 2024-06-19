@@ -5,7 +5,9 @@
 #include <stdbool.h>
 #include "key_value.h"
 
-typedef struct _node_t *dict_t;
+typedef struct _node_t *node_t;
+
+typedef struct _dict_t *dict_t;
 /*
  * Note: The definition of the structure should be in [dict.c], not here.
  */
