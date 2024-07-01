@@ -18,21 +18,7 @@ void print_help(char *program_name)
            program_name);
 }
 
-char *parse_filepath(int argc, char *argv[])
-{
-    /* Parse the filepath given by command line argument. */
-    char *result = NULL;
 
-    if (argc < 2)
-    {
-        print_help(argv[0]);
-        exit(EXIT_FAILURE);
-    }
-
-    result = argv[1];
-
-    return (result);
-}
 
 float average(list l)
 {
