@@ -65,6 +65,7 @@ static bool invrep(pqueue q) {
     
     // q no puede ser NULL
     if(q == NULL){
+        
         return false;
     }
     

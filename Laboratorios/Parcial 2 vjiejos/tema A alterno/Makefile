@@ -8,6 +8,14 @@ TARGET = dispatch_patients
 
 all: $(TARGET)
 
+
+valgrind: $(TARGET)
+	valgrind --leak-check=full --show-reachable=yes ./$(TARGET)  input/hospital_a.in
+
+	valgrind --leak-check=full --show-reachable=yes ./$(TARGET)  input/hospital_b.in
+	
+	valgrind --leak-check=full --show-reachable=yes ./$(TARGET)  input/hospital_c.in
+
 $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS) $(LFLAGS) $(LIBS)
 
@@ -16,3 +24,4 @@ $(TARGET): $(OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS) $(TARGET)
+

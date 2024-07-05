@@ -125,7 +125,7 @@ bool line_iterator_end(line_iterator lit);
  * PRE: { TRUE }
  *   lit_ends = line_iterator_end(lit);
  * POS: {!lit_ends || lit == NULL}
- *https://github.com/joaquin-sosa-sardoy/FinalesLabAYED2/tree/main/Laboratorio
+ *
  */
 
 #endif
